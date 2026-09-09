@@ -25,10 +25,14 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.WithOrigins("http://localhost:5173")
+        policy.WithOrigins(
+                "http://localhost:5173",
+                "https://nvnstok.vercel.app"
+              )
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
+
 });
 builder.Services.AddDbContext<NvnStokDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
