@@ -81,19 +81,23 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddScoped<JwtTokenGenerator>();
 
+
+
+var app = builder.Build(); 
+
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<NvnStokDbContext>();
     dbContext.Database.Migrate();
 }
 
-var app = builder.Build();
-
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
     app.MapScalarApiReference();
 }
+
+// ... geri kalanı
 
 app.UseHttpsRedirection();
 app.UseCors("AllowFrontend");
