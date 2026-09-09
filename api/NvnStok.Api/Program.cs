@@ -81,7 +81,11 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddScoped<JwtTokenGenerator>();
 
-
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<NvnStokDbContext>();
+    dbContext.Database.Migrate();
+}
 
 var app = builder.Build();
 
