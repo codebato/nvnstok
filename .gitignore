@@ -1,0 +1,25 @@
+# .NET derleme çıktıları
+**/bin/
+**/obj/
+
+# Node.js bağımlılıkları
+**/node_modules/
+
+# Hassas ayar dosyaları (User Secrets zaten dışarıda, ama garanti olsun)
+**/appsettings.Development.json
+**/appsettings.Production.json
+
+# Vite/React derleme çıktısı
+**/dist/
+
+# IDE/Editör dosyaları
+.vs/
+.vscode/
+*.user
+
+# İşletim sistemi dosyaları
+.DS_Store
+Thumbs.db
+
+# Log dosyaları
+*.log

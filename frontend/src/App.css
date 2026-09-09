@@ -1,0 +1,165 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: #0f172a;
+  color: #e2e8f0;
+}
+
+.auth-container {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 32px;
+  background: #1e293b;
+  border-radius: 12px;
+}
+
+.auth-container h1 {
+  font-size: 20px;
+  margin-bottom: 24px;
+}
+
+.auth-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.auth-container input {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+.auth-container button {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background: #6366f1;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.auth-container button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error {
+  color: #f87171;
+  font-size: 14px;
+}
+
+.dashboard {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.dashboard header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.dashboard header button {
+  margin-left: 12px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #334155;
+  background: transparent;
+  color: #e2e8f0;
+  cursor: pointer;
+}
+
+.dashboard main {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.product-form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.product-form input {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #334155;
+  background: #1e293b;
+  color: #e2e8f0;
+}
+
+.product-form button {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  background: #6366f1;
+  color: white;
+  cursor: pointer;
+}
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.product-table th, .product-table td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid #334155;
+}
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge-danger {
+  background: #7f1d1d;
+  color: #fca5a5;
+}
+
+.badge-success {
+  background: #14532d;
+  color: #86efac;
+}
+
+.chat-box form {
+  display: flex;
+  gap: 8px;
+}
+
+.chat-box input {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  background: #1e293b;
+  color: #e2e8f0;
+}
+
+.chat-box button {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  background: #6366f1;
+  color: white;
+  cursor: pointer;
+}
+
+.chat-answer {
+  margin-top: 16px;
+  padding: 16px;
+  background: #1e293b;
+  border-radius: 8px;
+  line-height: 1.6;
+}

@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="NvnStok.Api/NvnStok.Api.csproj" />
+  <Project Path="NvnStok.Application/NvnStok.Application.csproj" />
+  <Project Path="NvnStok.Domain/NvnStok.Domain.csproj" />
+  <Project Path="NvnStok.Infrastructure/NvnStok.Infrastructure.csproj" />
+  <Project Path="NvnStok.Tests/NvnStok.Tests.csproj" />
+</Solution>
