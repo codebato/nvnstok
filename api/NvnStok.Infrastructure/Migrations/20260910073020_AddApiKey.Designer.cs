@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using NvnStok.Infrastructure.Data;
@@ -11,9 +12,11 @@ using NvnStok.Infrastructure.Data;
 namespace NvnStok.Infrastructure.Migrations
 {
     [DbContext(typeof(NvnStokDbContext))]
-    partial class NvnStokDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260910073020_AddApiKey")]
+    partial class AddApiKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

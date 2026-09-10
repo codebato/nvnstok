@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NvnStok.Domain.Entities;
 using NvnStok.Infrastructure.Auth;
+using NvnStok.Infrastructure.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace NvnStok.Api.Controllers;
 
@@ -11,12 +13,16 @@ public class AuthController : ControllerBase
 {
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly JwtTokenGenerator _tokenGenerator;
+    private readonly NvnStokDbContext _dbContext;  
 
-
-    public AuthController(UserManager<ApplicationUser> userManager, JwtTokenGenerator tokenGenerator)
+    public AuthController(
+        UserManager<ApplicationUser> userManager,
+        JwtTokenGenerator tokenGenerator,
+        NvnStokDbContext dbContext)
     {
         _userManager = userManager;
         _tokenGenerator = tokenGenerator;
+        _dbContext = dbContext;
     }
 
 
@@ -33,12 +39,12 @@ public class AuthController : ControllerBase
             Email = request.Email
         };
 
-     
+
         var result = await _userManager.CreateAsync(user, request.Password);
 
         if (!result.Succeeded)
         {
-  
+
             var errors = result.Errors.Select(e => e.Description);
             return BadRequest(new { errors });
         }
@@ -63,6 +69,31 @@ public class AuthController : ControllerBase
         var token = _tokenGenerator.GenerateToken(user);
         return Ok(new { token, email = user.Email });
     }
+
+
+[HttpPost("api-keys")]
+[Authorize]
+public async Task<IActionResult> CreateApiKey([FromBody] CreateApiKeyRequest request)
+{
+    var userId = User.FindFirst(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Sub)?.Value;
+    if (userId is null) return Unauthorized();
+
+
+    var apiKey = new ApiKey
+    {
+        Id = Guid.NewGuid(),
+        UserId = userId,
+        Key = Guid.NewGuid().ToString("N") + Guid.NewGuid().ToString("N"),
+        Name = request.Name
+    };
+
+    _dbContext.ApiKeys.Add(apiKey);
+    await _dbContext.SaveChangesAsync();
+
+    return Ok(new { apiKey.Id, apiKey.Key, apiKey.Name });
+}
+
+public record CreateApiKeyRequest(string Name);
 }
 
 public record RegisterRequest(string Email, string Password);

@@ -97,10 +97,11 @@ if (app.Environment.IsDevelopment())
     app.MapScalarApiReference();
 }
 
-// ... geri kalanı
+
 
 app.UseHttpsRedirection();
 app.UseCors("AllowFrontend");
+app.UseMiddleware<NvnStok.Api.Middleware.ApiKeyMiddleware>();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();

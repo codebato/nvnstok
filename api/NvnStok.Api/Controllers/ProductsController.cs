@@ -65,12 +65,16 @@ public class ProductsController : ControllerBase
     [HttpGet("low-stock")]
     public async Task<IActionResult> GetLowStock()
     {
-        var products = await _stockRepository.GetAllProductsAsync();
+        var userId = GetCurrentUserId();
+        var allProducts = await _stockRepository.GetAllProductsAsync();
+        var products = allProducts.Where(p => p.UserId == userId).ToList();
+
         var result = new List<object>();
         foreach (var product in products)
         {
             var isLow = await _stockCalculationService.IsLowStockAsync(product.Id);
             if (!isLow) continue;
+           
 
             var currentStock = await _stockCalculationService.GetCurrentStockAsync(product.Id);
             result.Add(new
